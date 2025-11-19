@@ -82,4 +82,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable auto-pixie.service
 sudo systemctl start auto-pixie.service
 
-echo -e "${BLUE}[*] Setup finished.${NC}"
+echo -e "${BLUE}\nCloning OneShot-Extended...${NC}"
+git clone https://github.com/chickendrop89/OneShot-Extended ose
+
+echo -e "${BLUE}\n[*] Setup finished.${NC}"
