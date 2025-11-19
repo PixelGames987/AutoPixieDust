@@ -7,6 +7,7 @@ import time
 
 
 INTERFACE = os.getenv("INTERFACE")
+HOME = os.getenv("HOME")
 TIMEOUT = 30
 
 def scan(interface: str, rescan: bool=True):
@@ -69,7 +70,7 @@ def main_loop():
             subprocess.run(f"sudo iwconfig {INTERFACE} mode managed", shell=True)
             subprocess.run(f"sudo ifconfig {INTERFACE} up", shell=True)
 
-            subprocess.run(f"timeout {TIMEOUT} sudo ose/ose.py -i {INTERFACE} -K -F --bssid {network.bssid}", shell=True)
+            subprocess.run(f"timeout {TIMEOUT} sudo {HOME}/AutoPixieDust/ose/ose.py -i {INTERFACE} -K -F --bssid {network.bssid}", shell=True)
 
 
 if __name__ == "__main__":

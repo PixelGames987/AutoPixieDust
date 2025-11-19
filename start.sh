@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export HOME="/home/pi"
+
 export INTERFACE="wlan1"
 
 mode=$(iwconfig "${INTERFACE}" | grep -o "Mode:Monitor")
@@ -33,4 +35,4 @@ trap cleanup INT TERM
 
 echo "The script can be stopped using ctrl+c"
 
-venv/bin/python main.py
+${HOME}/AutoPixieDust/venv/bin/python ${HOME}/AutoPixieDust/main.py
