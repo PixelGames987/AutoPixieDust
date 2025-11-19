@@ -20,7 +20,6 @@ def scan(interface: str, rescan: bool=True):
 
 def main_loop():
     while True:
-        print("The outputs will be saved in the start script directory (AutoPixieDust/reports)")
         time.sleep(3)
 
         networks_old = scan(INTERFACE, True)
@@ -70,7 +69,7 @@ def main_loop():
             subprocess.run(f"sudo iwconfig {INTERFACE} mode managed", shell=True)
             subprocess.run(f"sudo ifconfig {INTERFACE} up", shell=True)
 
-            subprocess.run(f"timeout {TIMEOUT} sudo {HOME}/AutoPixieDust/ose/ose.py -i {INTERFACE} -K -F --bssid {network.bssid}", shell=True)
+            subprocess.run(f"timeout {TIMEOUT} sudo {HOME}/AutoPixieDust/ose/ose.py -i {INTERFACE} -K -F -s --bssid {network.bssid}", shell=True)
 
 
 if __name__ == "__main__":
