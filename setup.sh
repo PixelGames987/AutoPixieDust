@@ -58,7 +58,7 @@ echo -e "${GREEN}[*] Packages installed successfully.${NC}\n"
 
 echo -e "${BLUE}[*] Creating systemd service for auto-pixie.py...${NC}"
 
-PYTHON_SCRIPT_PATH="${USER_HOME}/auto-pixie.py"
+SCRIPT_PATH="${USER_HOME}/AutoPixieDust/start.sh"
 SERVICE_FILE_PIXIE="/etc/systemd/system/auto-pixie.service"
 
 sudo tee "$SERVICE_FILE_PIXIE" > /dev/null << EOF
@@ -67,7 +67,7 @@ Description=Auto Pixie Attack Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 ${PYTHON_SCRIPT_PATH}
+ExecStart=${SCRIPT_PATH}
 WorkingDirectory=${USER_HOME}
 Restart=always
 User=root
@@ -84,5 +84,10 @@ sudo systemctl start auto-pixie.service
 
 echo -e "${BLUE}\nCloning OneShot-Extended...${NC}"
 git clone https://github.com/chickendrop89/OneShot-Extended ose
+
+echo -e "${BLUE}\nSetting up pixie-all...${NC}"
+python -m venv venv
+venv/bin/python -m pip install -r requirements.txt
+mkdir reports
 
 echo -e "${BLUE}\n[*] Setup finished.${NC}"
